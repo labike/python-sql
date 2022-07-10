@@ -1,0 +1,25 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-23 16:52:02
+ * @LastEditTime: 2021-12-24 16:16:38
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /python3-sql/templates/cat.html
+-->
+{% extends 'home_base.html' %} {% block head %}
+<title>分类</title>
+{% endblock %} {% block content %}
+<h3 style="clear: both;">分类>{{name}}</h3>
+{% for item in news_list %}
+<div class="list-news">
+    <div class="img-content">
+        <img src="{{item.image}}" alt="">
+    </div>
+    <div class="right-content">
+        <p>
+            <a href="{{url_for('detail', id=item.id)}}">{{item.title}}</a>
+        </p>
+        <small>{{item.created_at}}</small>
+    </div>
+</div>
+{% endfor %} {% endblock %}

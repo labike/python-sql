@@ -1,0 +1,79 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-23 17:12:36
+ * @LastEditTime: 2021-12-24 16:04:23
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /python3-sql/templates/admin/index.html
+-->
+{% extends 'admin/base.html' %} {% block title %}首页{% endblock %} {% block content %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>标题</th>
+            <th>类别</th>
+            <th>添加时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in news_list.items %}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.types}}</td>
+            <td>{{item.created_at}}</td>
+            <td>
+                <a href="{{url_for('update', id = item.id)}}" class="btn btn-info">编辑</a>
+                <a href="javascript:void(-1)" data-url="{{url_for('delete', id = item.id)}}" class="btn btn-danger">删除</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li>
+            {% if news_list.has_prev %}
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            {% else %}
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true" disabled>&laquo;</span>
+            </a>
+            {% endif %}
+        </li>
+        {% for page in news_list.iter_pages() %}
+        <li><a href="{{url_for('admin', page = page)}}">{{page}}</a></li>
+        {% endfor %}
+        <li>
+            {% if news_list.has_next %}
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
+{% endblock %} {% block extrajs %}
+<script>
+    $(function() {
+        $('.btn-danger').on('click', function() {
+            const _this = this
+            var url = $(this).attr('data-url');
+            if (confirm('确认删除吗？')) {
+                $.post(url, function(res) {
+                    if (res === 'yes') {
+                        alert('delete success')
+                        _this.parents('tr').hide()
+                    } else {
+                        alert('delete fail')
+                    }
+                })
+            }
+        })
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-23 16:51:30
+ * @LastEditTime: 2021-12-24 16:15:10
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /python3-sql/templates/home_base.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/index.css', _external=True)}}"> {% block head %} -->
+    <title>首页</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <style>
+        .nav-box {
+            list-style: none;
+        }
+        
+        .nav-box li {
+            float: left;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container">
+        <nav class="nav nav-pills">
+            <ul class="nav-box">
+                <li role="presentation">
+                    <a href="{{url_for('home')}}">首页</a>
+                </li>
+                <li role="presentation">
+                    <a href="{{url_for('cat', name = '推荐')}}">推荐</a>
+                </li>
+                <li role="presentation">
+                    <a href="{{url_for('cat', name = '腾讯')}}">腾讯</a>
+                </li>
+                <li role="presentation">
+                    <a href="{{url_for('cat', name = '百度')}}">百度</a>
+                </li>
+                <li role="presentation">
+                    <a href="{{url_for('cat', name = '新浪')}}">新浪</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <article class="container">
+        {% block content %} {% endblock %}
+    </article>
+    {% block extrajs %} {% endblock %}
+</body>
+
+</html>
+
+</html>
